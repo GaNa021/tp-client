@@ -16,6 +16,7 @@ import {
 } from "react-router-dom"
 import Scripts from "./Scripts"
 import UsersGroups from "./UsersGroups"
+import UsersUsers from "./UsersUsers"
 
 function MainTab() {
   // states for storing Host, Port, SessionID
@@ -132,14 +133,15 @@ function MainTab() {
               </div>
               <div className="grid justify-items-stretch">
                 <div className="justify-self-end space-x-2">
-                  <div>
-                    <li
-                      className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer"
-                      onClick={() => {
-                        setshowMenuCatalogs(true)
-                        toggleshowMenuCatalogs()
-                      }}
-                    >
+                  <div
+                    onMouseEnter={() => {
+                      setshowMenuCatalogs(true)
+                    }}
+                    onMouseLeave={() => {
+                      toggleshowMenuCatalogs()
+                    }}
+                  >
+                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
                       Catalogs{" "}
                       <svg
                         className="w-4 h-4 ml-2"
@@ -191,14 +193,15 @@ function MainTab() {
               </li>
               <div className="grid justify-items-stretch">
                 <div className="justify-self-end space-x-2">
-                  <div>
-                    <li
-                      className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer"
-                      onClick={() => {
-                        setshowMenuUsers(true)
-                        toggleshowMenuUsers()
-                      }}
-                    >
+                  <div
+                    onMouseEnter={() => {
+                      setshowMenuUsers(true)
+                    }}
+                    onMouseLeave={() => {
+                      toggleshowMenuUsers()
+                    }}
+                  >
+                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
                       Users & Groups{" "}
                       <svg
                         className="w-4 h-4 ml-2"
@@ -296,6 +299,18 @@ function MainTab() {
               path="/UsersGroups"
               element={
                 <UsersGroups
+                  host={Host}
+                  port={Port}
+                  sessionid={SessionId}
+                  ClientInfo={ClientInfo}
+                />
+              }
+            ></Route>
+            <Route
+              exact
+              path="/UsersUsers"
+              element={
+                <UsersUsers
                   host={Host}
                   port={Port}
                   sessionid={SessionId}
@@ -535,7 +550,7 @@ function DropDownUsers(props) {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/ErrorPage")
+              props.navigate("/UsersUsers")
               props.toggleshowMenuUsers()
             }}
           >

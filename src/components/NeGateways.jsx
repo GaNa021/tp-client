@@ -72,35 +72,27 @@ function NeGateWays(props) {
                           </label>
                         </div>
                       </td>
-                      <td className="text-black px-6 py-4">{data.strName}</td>
-                      <td className="text-black px-6 py-4">
-                        {data.bEnabled ? "True" : "False"}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strVersionInformation}
-                      </td>
-                      <td className="text-black px-6 py-4">{data.strHost}</td>
-                      <td className="text-black px-6 py-4">
-                        {data.bConnected ? "True" : "False"}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwLastConnectionOkTimestampMs}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwTraceLevel}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strSystemRemarks}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strLastOperation}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strLastOperatedUser}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwLastOperationTimeMs}
-                      </td>
+                      {[
+                        "strName",
+                        "bEnabled",
+                        "strVersionInformation",
+                        "strHost",
+                        "bConnected",
+                        "dwLastConnectionOkTimestampMs",
+                        "dwTraceLevel",
+                        "strSystemRemarks",
+                        "strLastOperation",
+                        "strLastOperatedUser",
+                        "dwLastOperationTimeMs"
+                      ].map((key) => (
+                        <td className="text -black px-6 py-4">
+                          {typeof data[key] === "boolean"
+                            ? data[key]
+                              ? "True"
+                              : "False"
+                            : `${data[key]}`}
+                        </td>
+                      ))}
                     </tr>
                   )
                 })}
@@ -298,13 +290,19 @@ function DropDown(props) {
     <>
       <div className="grid justify-items-stretch">
         <div className="justify-self-end space-x-2">
-          <div>
+          <div
+            onMouseEnter={() => {
+              toggleshowMenu()
+            }}
+            onMouseLeave={() => {
+              toggleshowMenu()
+            }}
+          >
             <button
               id="dropdownDefault"
               data-dropdown-toggle="dropdown"
               className="hover:bg-gray-100 text-black py-1 px-3 rounded-full text-center inline-flex items-center"
               type="button"
-              onClick={toggleshowMenu}
             >
               <img
                 src="https://img.icons8.com/color/344/settings--v2.png"
@@ -423,4 +421,35 @@ export default NeGateWays
                   d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
+
+
+              
+                      <td className="text -black px-6 py-4">
+                        {data.bEnabled ? "True" : "False"}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.strVersionInformation}
+                      </td>
+                      <td className="text-black px-6 py-4">{data.strHost}</td>
+                      <td className="text-black px-6 py-4">
+                        {data.bConnected ? "True" : "False"}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.dwLastConnectionOkTimestampMs}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.dwTraceLevel}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.strSystemRemarks}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.strLastOperation}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.strLastOperatedUser}
+                      </td>
+                      <td className="text-black px-6 py-4">
+                        {data.dwLastOperationTimeMs}
+                      </td>
 */
