@@ -13,7 +13,7 @@ function Login({ doLogin }) {
   // main component to be rendered
   return (
     <>
-      <div className="md:flex md:justify-center mb-6 py-32">
+      <div className="md:flex md:justify-center py-28">
         <div className="w-96 bg-white border border-black shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <label className="block text-gray-700 text-xl font-bold mb-2">
             LogIn

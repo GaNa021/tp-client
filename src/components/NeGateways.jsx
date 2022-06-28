@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { get, post } from "superagent"
-import Alert from "./Alert"
+import Alert from "../uiComponents/Alert"
+import Table from "../uiComponents/Table"
 
 function NeGateWays(props) {
   // State for storing NeGateway configs as JSON objects
@@ -39,66 +40,24 @@ function NeGateWays(props) {
       <br />
       {NeGatewayConfig != null ? (
         <>
-          <div className="shadow-md sm:rounded-lg ml-1 overflow-y-auto h-4/6">
-            <table
-              id="NeGatewaysTable"
-              className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
-            >
-              <thead className="text-xs uppercase dark:bg-slate-500">
-                <tr>
-                  <th scope="col" className="px-6 py-3"></th>{" "}
-                  {tableHeaders.map((_headers) => {
-                    return (
-                      <th scope="col" className="text-white px-6 py-3">
-                        {_headers}
-                      </th>
-                    )
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {NeGatewayConfig.map((data) => {
-                  return (
-                    <tr key={data.strName} className="bg-white border-b-2">
-                      <td className="w-4 p-4">
-                        <div className="flex items-center">
-                          <input
-                            id="checkbox-table-1"
-                            type="checkbox"
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                          />
-                          <label htmlFor="checkbox-table-1" className="sr-only">
-                            checkbox
-                          </label>
-                        </div>
-                      </td>
-                      {[
-                        "strName",
-                        "bEnabled",
-                        "strVersionInformation",
-                        "strHost",
-                        "bConnected",
-                        "dwLastConnectionOkTimestampMs",
-                        "dwTraceLevel",
-                        "strSystemRemarks",
-                        "strLastOperation",
-                        "strLastOperatedUser",
-                        "dwLastOperationTimeMs"
-                      ].map((key) => (
-                        <td className="text -black px-6 py-4">
-                          {typeof data[key] === "boolean"
-                            ? data[key]
-                              ? "True"
-                              : "False"
-                            : `${data[key]}`}
-                        </td>
-                      ))}
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+          <Table
+            tableHeaders={tableHeaders}
+            data={NeGatewayConfig}
+            tableDataObject={[
+              "strName",
+              "bEnabled",
+              "strVersionInformation",
+              "strHost",
+              "bConnected",
+              "dwLastConnectionOkTimestampMs",
+              "dwTraceLevel",
+              "strSystemRemarks",
+              "strLastOperation",
+              "strLastOperatedUser",
+              "dwLastOperationTimeMs"
+            ]}
+            id="NeGatewaysTable"
+          ></Table>
         </>
       ) : null}
 
@@ -407,49 +366,63 @@ function DropDown(props) {
 export default NeGateWays
 
 /*
-<svg
-                className="w-4 h-4 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-
-
-              
-                      <td className="text -black px-6 py-4">
-                        {data.bEnabled ? "True" : "False"}
+<div className="shadow-md sm:rounded-lg ml-1 overflow-y-auto h-4/6">
+            <table
+              id="NeGatewaysTable"
+              className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+            >
+              <thead className="text-xs uppercase dark:bg-slate-500">
+                <tr>
+                  <th scope="col" className="px-6 py-3"></th>{" "}
+                  {tableHeaders.map((_headers) => {
+                    return (
+                      <th scope="col" className="text-white px-6 py-3">
+                        {_headers}
+                      </th>
+                    )
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {NeGatewayConfig.map((data) => {
+                  return (
+                    <tr key={data.strName} className="bg-white border-b-2">
+                      <td className="w-4 p-4">
+                        <div className="flex items-center">
+                          <input
+                            id="checkbox-table-1"
+                            type="checkbox"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                          />
+                          <label htmlFor="checkbox-table-1" className="sr-only">
+                            checkbox
+                          </label>
+                        </div>
                       </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strVersionInformation}
-                      </td>
-                      <td className="text-black px-6 py-4">{data.strHost}</td>
-                      <td className="text-black px-6 py-4">
-                        {data.bConnected ? "True" : "False"}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwLastConnectionOkTimestampMs}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwTraceLevel}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strSystemRemarks}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strLastOperation}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.strLastOperatedUser}
-                      </td>
-                      <td className="text-black px-6 py-4">
-                        {data.dwLastOperationTimeMs}
-                      </td>
-*/
+                      {[
+                        "strName",
+                        "bEnabled",
+                        "strVersionInformation",
+                        "strHost",
+                        "bConnected",
+                        "dwLastConnectionOkTimestampMs",
+                        "dwTraceLevel",
+                        "strSystemRemarks",
+                        "strLastOperation",
+                        "strLastOperatedUser",
+                        "dwLastOperationTimeMs"
+                      ].map((key) => (
+                        <td className="text -black px-6 py-4">
+                          {typeof data[key] === "boolean"
+                            ? data[key]
+                              ? "True"
+                              : "False"
+                            : `${data[key]}`}
+                        </td>
+                      ))}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>*/

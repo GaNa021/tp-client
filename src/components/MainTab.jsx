@@ -2,10 +2,9 @@ import { get, post } from "superagent"
 import { useEffect, useState } from "react"
 import NeGateWays from "./NeGateways"
 import Login from "./Login"
-import ErrorPage from "./ErrorPage"
-import Alert from "./Alert"
+import ErrorPage from "../uiComponents/ErrorPage"
+import Alert from "../uiComponents/Alert"
 import NeSessions from "./NeSessions"
-import TestPage from "./TestPage"
 
 import {
   BrowserRouter as Router,
@@ -17,6 +16,7 @@ import {
 import Scripts from "./Scripts"
 import UsersGroups from "./UsersGroups"
 import UsersUsers from "./UsersUsers"
+import DropDown from "../uiComponents/DropDown"
 
 function MainTab() {
   // states for storing Host, Port, SessionID
@@ -93,169 +93,170 @@ function MainTab() {
         </>
       ) : (
         <>
-          <div className="relative grid justify-items-stretch">
-            <ul className="md:flex items-center space-x-8 px-2 py-3">
-              <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowMenuNeInterface(true)
-                    }}
-                    onMouseLeave={() => {
-                      toggleshowMenuNeInterface()
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      NE Interfaces{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    {showMenuNeInterface ? (
-                      <DropDownNESessions
-                        navigate={navigate}
-                        toggleshowMenuNeInterface={toggleshowMenuNeInterface}
-                      />
-                    ) : null}
+          <div className="">
+            <div className="relative grid justify-items-stretch">
+              <ul className="md:flex items-center space-x-8 px-2 py-3">
+                <div className="grid justify-items-stretch">
+                  <div className="justify-self-end space-x-2">
+                    <div
+                      onMouseEnter={() => {
+                        setshowMenuNeInterface(true)
+                      }}
+                      onMouseLeave={() => {
+                        toggleshowMenuNeInterface()
+                      }}
+                    >
+                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                        NE Interfaces{" "}
+                        <svg
+                          className="w-4 h-4 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </li>
+                      {showMenuNeInterface ? (
+                        <DropDownNESessions
+                          navigate={navigate}
+                          toggleshowMenuNeInterface={toggleshowMenuNeInterface}
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowMenuCatalogs(true)
-                    }}
-                    onMouseLeave={() => {
-                      toggleshowMenuCatalogs()
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      Catalogs{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    {showMenuCatalogs ? (
-                      <DropDownCatalogs
-                        navigate={navigate}
-                        toggleshowMenuCatalogs={toggleshowMenuCatalogs}
-                      />
-                    ) : null}
+                <div className="grid justify-items-stretch">
+                  <div className="justify-self-end space-x-2">
+                    <div
+                      onMouseEnter={() => {
+                        setshowMenuCatalogs(true)
+                      }}
+                      onMouseLeave={() => {
+                        toggleshowMenuCatalogs()
+                      }}
+                    >
+                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                        Catalogs{" "}
+                        <svg
+                          className="w-4 h-4 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </li>
+                      {showMenuCatalogs ? (
+                        <DropDownCatalogs
+                          navigate={navigate}
+                          toggleshowMenuCatalogs={toggleshowMenuCatalogs}
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <li
-                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                onClick={() => {
-                  navigate("/ErrorPage")
-                }}
-              >
-                SO Applications
-              </li>
-              <li
-                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                onClick={() => {
-                  navigate("/ErrorPage")
-                }}
-              >
-                BSS Integrators
-              </li>
-              <li
-                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                onClick={() => {
-                  navigate("/ErrorPage")
-                }}
-              >
-                Log & Alarms
-              </li>
-              <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowMenuUsers(true)
-                    }}
-                    onMouseLeave={() => {
-                      toggleshowMenuUsers()
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      Users & Groups{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    {showMenuUsers ? (
-                      <DropDownUsers
-                        navigate={navigate}
-                        toggleshowMenuUsers={toggleshowMenuUsers}
-                      />
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-              <li
-                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                onClick={() => {
-                  navigate("/ErrorPage")
-                }}
-              >
-                Settings & Tools
-              </li>
-              <li>
-                <Link
-                  to="/Traces"
-                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300"
+                <li
+                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                  onClick={() => {
+                    navigate("/ErrorPage")
+                  }}
                 >
-                  Traces
-                </Link>
-              </li>
-            </ul>
+                  SO Applications
+                </li>
+                <li
+                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                  onClick={() => {
+                    navigate("/ErrorPage")
+                  }}
+                >
+                  BSS Integrators
+                </li>
+                <li
+                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                  onClick={() => {
+                    navigate("/ErrorPage")
+                  }}
+                >
+                  Log & Alarms
+                </li>
+                <div className="grid justify-items-stretch">
+                  <div className="justify-self-end space-x-2">
+                    <div
+                      onMouseEnter={() => {
+                        setshowMenuUsers(true)
+                      }}
+                      onMouseLeave={() => {
+                        toggleshowMenuUsers()
+                      }}
+                    >
+                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                        Users & Groups{" "}
+                        <svg
+                          className="w-4 h-4 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </li>
+                      {showMenuUsers ? (
+                        <DropDownUsers
+                          navigate={navigate}
+                          toggleshowMenuUsers={toggleshowMenuUsers}
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <li
+                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                  onClick={() => {
+                    navigate("/ErrorPage")
+                  }}
+                >
+                  Settings & Tools
+                </li>
+                <li>
+                  <Link
+                    to="/Traces"
+                    className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300"
+                  >
+                    Traces
+                  </Link>
+                </li>
+              </ul>
 
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 ">
-              <button
-                className="-mt-8 justify-self-end bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-                onClick={doLogout}
-              >
-                LogOut
-              </button>
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 ">
+                <button
+                  className="-mt-8 justify-self-end bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  onClick={doLogout}
+                >
+                  LogOut
+                </button>
+              </div>
             </div>
           </div>
-
           <Routes>
             <Route exact path="/" element={<Login />}></Route>
             <Route
@@ -325,7 +326,6 @@ function MainTab() {
             <Route exact path="/Settings&Tools" element={<ErrorPage />}></Route>
             <Route exact path="/Traces" element={<ErrorPage />}></Route>
             <Route exact path="/ErrorPage" element={<ErrorPage />}></Route>
-            <Route exact path="/Test" element={<TestPage />}></Route>
           </Routes>
         </>
       )}

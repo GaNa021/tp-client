@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { get, post } from "superagent"
-import Alert from "./Alert"
+import Alert from "../uiComponents/Alert"
 
 function UsersUsers(props) {
   // State for storing Users configs as JSON objects

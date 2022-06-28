@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { get, post } from "superagent"
-import Alert from "./Alert"
+import Alert from "../uiComponents/Alert"
 
 function UsersGroups(props) {
   // State for storing Groups configs as JSON objects
