@@ -32,8 +32,8 @@ function DropDown() {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/UsersGroups")
-              props.toggleshowMenuUsers()
+              //props.navigate("/UsersGroups")
+              //props.toggleshowMenuUsers()
             }}
           >
             Groups
@@ -41,8 +41,8 @@ function DropDown() {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/UsersUsers")
-              props.toggleshowMenuUsers()
+              //props.navigate("/UsersUsers")
+              //props.toggleshowMenuUsers()
             }}
           >
             Users
@@ -50,8 +50,8 @@ function DropDown() {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
+              //props.navigate("/ErrorPage")
+              //props.toggleshowMenuUsers()
             }}
           >
             LoggedIn Users
@@ -59,8 +59,8 @@ function DropDown() {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
+              //props.navigate("/ErrorPage")
+              //props.toggleshowMenuUsers()
             }}
           >
             Users History
@@ -68,8 +68,8 @@ function DropDown() {
           <li
             className={li_styles}
             onClick={() => {
-              props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
+              //props.navigate("/ErrorPage")
+              //props.toggleshowMenuUsers()
             }}
           >
             Auth Settings

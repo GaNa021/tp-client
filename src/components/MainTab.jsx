@@ -27,9 +27,11 @@ function MainTab() {
   const [Response, setResponse] = useState("")
 
   // states for storing dropdown menu states
-  const [showMenuNeInterface, setshowMenuNeInterface] = useState(false)
-  const [showMenuCatalogs, setshowMenuCatalogs] = useState(false)
-  const [showMenuUsers, setshowMenuUsers] = useState(false)
+  const [showDropDown, setshowDropDown] = useState({
+    NeInterfaces: "hidden",
+    Catalogs: "hidden",
+    UsersGroups: "hidden"
+  })
 
   // hook to navigate between pages
   const navigate = useNavigate()
@@ -59,19 +61,6 @@ function MainTab() {
       : null
   }
 
-  // functions for toggling the dropdown menus
-  function toggleshowMenuNeInterface() {
-    setshowMenuNeInterface(!showMenuNeInterface)
-  }
-
-  function toggleshowMenuCatalogs() {
-    setshowMenuCatalogs(!showMenuCatalogs)
-  }
-
-  function toggleshowMenuUsers() {
-    setshowMenuUsers(!showMenuUsers)
-  }
-
   useEffect(() => {
     sessionDetails()
   }, [])
@@ -93,170 +82,172 @@ function MainTab() {
         </>
       ) : (
         <>
-          <div className="">
-            <div className="relative grid justify-items-stretch">
-              <ul className="md:flex items-center space-x-8 px-2 py-3">
-                <div className="grid justify-items-stretch">
-                  <div className="justify-self-end space-x-2">
-                    <div
-                      onMouseEnter={() => {
-                        setshowMenuNeInterface(true)
-                      }}
-                      onMouseLeave={() => {
-                        toggleshowMenuNeInterface()
-                      }}
-                    >
-                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                        NE Interfaces{" "}
-                        <svg
-                          className="w-4 h-4 ml-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                      </li>
-                      {showMenuNeInterface ? (
-                        <DropDownNESessions
-                          navigate={navigate}
-                          toggleshowMenuNeInterface={toggleshowMenuNeInterface}
-                        />
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-                <div className="grid justify-items-stretch">
-                  <div className="justify-self-end space-x-2">
-                    <div
-                      onMouseEnter={() => {
-                        setshowMenuCatalogs(true)
-                      }}
-                      onMouseLeave={() => {
-                        toggleshowMenuCatalogs()
-                      }}
-                    >
-                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                        Catalogs{" "}
-                        <svg
-                          className="w-4 h-4 ml-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                      </li>
-                      {showMenuCatalogs ? (
-                        <DropDownCatalogs
-                          navigate={navigate}
-                          toggleshowMenuCatalogs={toggleshowMenuCatalogs}
-                        />
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-                <li
-                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                  onClick={() => {
-                    navigate("/ErrorPage")
-                  }}
-                >
-                  SO Applications
-                </li>
-                <li
-                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                  onClick={() => {
-                    navigate("/ErrorPage")
-                  }}
-                >
-                  BSS Integrators
-                </li>
-                <li
-                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                  onClick={() => {
-                    navigate("/ErrorPage")
-                  }}
-                >
-                  Log & Alarms
-                </li>
-                <div className="grid justify-items-stretch">
-                  <div className="justify-self-end space-x-2">
-                    <div
-                      onMouseEnter={() => {
-                        setshowMenuUsers(true)
-                      }}
-                      onMouseLeave={() => {
-                        toggleshowMenuUsers()
-                      }}
-                    >
-                      <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                        Users & Groups{" "}
-                        <svg
-                          className="w-4 h-4 ml-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                      </li>
-                      {showMenuUsers ? (
-                        <DropDownUsers
-                          navigate={navigate}
-                          toggleshowMenuUsers={toggleshowMenuUsers}
-                        />
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-                <li
-                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-                  onClick={() => {
-                    navigate("/ErrorPage")
-                  }}
-                >
-                  Settings & Tools
-                </li>
-                <li>
-                  <Link
-                    to="/Traces"
-                    className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300"
+          <div className="relative grid justify-items-stretch">
+            <ul className="md:flex items-center space-x-8 px-2 py-2">
+              <div className="grid justify-items-stretch">
+                <div className="justify-self-end space-x-2">
+                  <div
+                    onMouseEnter={() => {
+                      setshowDropDown({ ...showDropDown, NeInterfaces: "" })
+                    }}
+                    onMouseLeave={() => {
+                      setshowDropDown({
+                        ...showDropDown,
+                        NeInterfaces: "hidden"
+                      })
+                    }}
                   >
-                    Traces
-                  </Link>
-                </li>
-              </ul>
-
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 ">
-                <button
-                  className="-mt-8 justify-self-end bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                  onClick={doLogout}
-                >
-                  LogOut
-                </button>
+                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                      NE Interfaces{" "}
+                      <svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </li>
+                    <DropDownNESessions
+                      show={showDropDown.NeInterfaces}
+                      navigate={navigate}
+                    />
+                  </div>
+                </div>
               </div>
+              <div className="grid justify-items-stretch">
+                <div className="justify-self-end space-x-2">
+                  <div
+                    onMouseEnter={() => {
+                      setshowDropDown({ ...showDropDown, Catalogs: "" })
+                    }}
+                    onMouseLeave={() => {
+                      setshowDropDown({
+                        ...showDropDown,
+                        Catalogs: "hidden"
+                      })
+                    }}
+                  >
+                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                      Catalogs{" "}
+                      <svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </li>
+                    <DropDownCatalogs
+                      show={showDropDown.Catalogs}
+                      navigate={navigate}
+                    />
+                  </div>
+                </div>
+              </div>
+              <li
+                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/ErrorPage")
+                }}
+              >
+                SO Applications
+              </li>
+              <li
+                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/ErrorPage")
+                }}
+              >
+                BSS Integrators
+              </li>
+              <li
+                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/ErrorPage")
+                }}
+              >
+                Log & Alarms
+              </li>
+              <div className="grid justify-items-stretch">
+                <div className="justify-self-end space-x-2">
+                  <div
+                    onMouseEnter={() => {
+                      setshowDropDown({ ...showDropDown, UsersGroups: "" })
+                    }}
+                    onMouseLeave={() => {
+                      setshowDropDown({
+                        ...showDropDown,
+                        UsersGroups: "hidden"
+                      })
+                    }}
+                  >
+                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                      Users & Groups{" "}
+                      <svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </li>
+                    <DropDownUsers
+                      show={showDropDown.UsersGroups}
+                      navigate={navigate}
+                    />
+                  </div>
+                </div>
+              </div>
+              <li
+                className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/ErrorPage")
+                }}
+              >
+                Settings & Tools
+              </li>
+              <li>
+                <Link
+                  to="/Traces"
+                  className="no-underline py-2 px-2 text-gray-500 hover:text-green-500 transition duration-300"
+                >
+                  Traces
+                </Link>
+              </li>
+            </ul>
+
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 ">
+              <button
+                className="-mt-8 justify-self-end bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                onClick={doLogout}
+              >
+                LogOut
+              </button>
             </div>
           </div>
+
           <Routes>
             <Route exact path="/" element={<Login />}></Route>
             <Route
@@ -417,65 +408,63 @@ function MainTab() {
 
 // function to rendering Dropdown for Ne Interfaces Module
 function DropDownNESessions(props) {
+  const li_styles =
+    "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
+
   return (
     <>
-      <div className="absolute bg-white rounded shadow w-44">
+      <div className={dropDownStyle}>
         <ul className="py-2 text-gray-700">
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/NEInterfaces/NeGateways")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Gateways
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/NEInterfaces/NeSessions")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Sessions
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Selection
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Manager
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Buffered Cmds
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuNeInterface()
               }}
             >
               NE Perf Analysis
@@ -489,35 +478,36 @@ function DropDownNESessions(props) {
 
 // function to rendering Dropdown for Catalogs Module
 function DropDownCatalogs(props) {
+  const li_styles =
+    "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
+
   return (
     <>
-      <div className="absolute bg-white rounded shadow w-44">
+      <div className={dropDownStyle}>
         <ul className="py-2 text-gray-700">
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/Catalogs/Scripts")
-                props.toggleshowMenuCatalogs()
               }}
             >
               Scripts
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuCatalogs()
               }}
             >
               Scheduler
             </button>
           </li>
-          <li className="py-2 hover:text-green-500 transition duration-300">
+          <li className={li_styles}>
             <button
               onClick={() => {
                 props.navigate("/ErrorPage")
-                props.toggleshowMenuCatalogs()
               }}
             >
               SA Catalogs
@@ -533,16 +523,16 @@ function DropDownCatalogs(props) {
 function DropDownUsers(props) {
   const li_styles =
     "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
 
   return (
     <>
-      <div className="absolute bg-white rounded shadow w-44">
+      <div className={dropDownStyle}>
         <ul className="py-2 text-gray-700">
           <li
             className={li_styles}
             onClick={() => {
               props.navigate("/UsersGroups")
-              props.toggleshowMenuUsers()
             }}
           >
             Groups
@@ -551,7 +541,6 @@ function DropDownUsers(props) {
             className={li_styles}
             onClick={() => {
               props.navigate("/UsersUsers")
-              props.toggleshowMenuUsers()
             }}
           >
             Users
@@ -560,7 +549,6 @@ function DropDownUsers(props) {
             className={li_styles}
             onClick={() => {
               props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
             }}
           >
             LoggedIn Users
@@ -569,7 +557,6 @@ function DropDownUsers(props) {
             className={li_styles}
             onClick={() => {
               props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
             }}
           >
             Users History
@@ -578,7 +565,6 @@ function DropDownUsers(props) {
             className={li_styles}
             onClick={() => {
               props.navigate("/ErrorPage")
-              props.toggleshowMenuUsers()
             }}
           >
             Auth Settings
