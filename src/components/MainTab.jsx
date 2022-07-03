@@ -26,13 +26,6 @@ function MainTab() {
   const [Port, setPort] = useState("")
   const [Response, setResponse] = useState("")
 
-  // states for storing dropdown menu states
-  const [showDropDown, setshowDropDown] = useState({
-    NeInterfaces: "hidden",
-    Catalogs: "hidden",
-    UsersGroups: "hidden"
-  })
-
   // hook to navigate between pages
   const navigate = useNavigate()
 
@@ -85,77 +78,47 @@ function MainTab() {
           <div className="relative grid justify-items-stretch">
             <ul className="md:flex items-center space-x-8 px-2 py-2">
               <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowDropDown({ ...showDropDown, NeInterfaces: "" })
-                    }}
-                    onMouseLeave={() => {
-                      setshowDropDown({
-                        ...showDropDown,
-                        NeInterfaces: "hidden"
-                      })
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      NE Interfaces{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    <DropDownNESessions
-                      show={showDropDown.NeInterfaces}
-                      navigate={navigate}
-                    />
-                  </div>
+                <div className="group relative justify-self-end space-x-2">
+                  <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                    NE Interfaces{" "}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </li>
+                  <DropDownNESessions navigate={navigate} />
                 </div>
               </div>
               <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowDropDown({ ...showDropDown, Catalogs: "" })
-                    }}
-                    onMouseLeave={() => {
-                      setshowDropDown({
-                        ...showDropDown,
-                        Catalogs: "hidden"
-                      })
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      Catalogs{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    <DropDownCatalogs
-                      show={showDropDown.Catalogs}
-                      navigate={navigate}
-                    />
-                  </div>
+                <div className="group relative justify-self-end space-x-2">
+                  <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                    Catalogs{" "}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </li>
+                  <DropDownCatalogs navigate={navigate} />
                 </div>
               </div>
               <li
@@ -183,40 +146,25 @@ function MainTab() {
                 Log & Alarms
               </li>
               <div className="grid justify-items-stretch">
-                <div className="justify-self-end space-x-2">
-                  <div
-                    onMouseEnter={() => {
-                      setshowDropDown({ ...showDropDown, UsersGroups: "" })
-                    }}
-                    onMouseLeave={() => {
-                      setshowDropDown({
-                        ...showDropDown,
-                        UsersGroups: "hidden"
-                      })
-                    }}
-                  >
-                    <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
-                      Users & Groups{" "}
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                    </li>
-                    <DropDownUsers
-                      show={showDropDown.UsersGroups}
-                      navigate={navigate}
-                    />
-                  </div>
+                <div className="group relative justify-self-end space-x-2">
+                  <li className="no-underline py-2 px-3 text-gray-500 inline-flex hover:text-green-500 transition duration-300 text-center items-center hover:cursor-pointer">
+                    Users & Groups{" "}
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </li>
+                  <DropDownUsers navigate={navigate} />
                 </div>
               </div>
               <li
@@ -410,7 +358,7 @@ function MainTab() {
 function DropDownNESessions(props) {
   const li_styles =
     "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 group-hover:block hidden`
 
   return (
     <>
@@ -480,7 +428,7 @@ function DropDownNESessions(props) {
 function DropDownCatalogs(props) {
   const li_styles =
     "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 group-hover:block hidden`
 
   return (
     <>
@@ -523,7 +471,7 @@ function DropDownCatalogs(props) {
 function DropDownUsers(props) {
   const li_styles =
     "py-2 hover:text-green-500 transition duration-300 hover:cursor-pointer"
-  const dropDownStyle = `absolute bg-white rounded shadow w-44 ${props.show}`
+  const dropDownStyle = `absolute bg-white rounded shadow w-44 group-hover:block hidden`
 
   return (
     <>
